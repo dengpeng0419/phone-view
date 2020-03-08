@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+    <script>
+      (function(win) {
+
+        var doc = win.document;
+        var docEl = doc.documentElement;
+        var tid;
+
+        // 计算rem基准值
+        function refreshRem() {
+          var width = docEl.getBoundingClientRect().width;
+          width > 1920 && (width = 1920);
+          var rem = width / 10*3 + 'px';
+          docEl.style.fontSize = rem;
+        }
+
+        // 浏览器窗口大小发生变化后重新计算rem基准值
+        win.addEventListener('resize', function() {
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        refreshRem();
+
+      })(window);
+    </script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>复工复产分析看板</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but this project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
